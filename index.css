@@ -1,0 +1,10 @@
+body {display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh}
+h1 {font-size:24px;color:#333;text-align:center;animation:alternateColor 2s infinite;margin-bottom:20px}
+select {padding:10px;border-radius:5px;border:2px solid #007bff;width:100%;max-width:400px;background-color:#007bff;color:white;font-size:15px;margin-bottom:20px;cursor:pointer}
+select:focus {border-color:#0056b3;outline:none;box-shadow:0 0 5px rgba(0,123,255,.5)}
+textarea {padding:10px;border-radius:5px;border:1px solid #ccc;width:100%;max-width:400px;margin-bottom:20px}
+button {padding:10px 20px;font-size:15px;background-color:#007bff;color:#fff;border:none;border-radius:5px;cursor:pointer;width:100%;max-width:400px;animation:bounceIn 1s ease}
+button:hover {background-color:#0069d9;animation:none}
+#resultShow {font-size:24px;color:#333;text-align:center;animation:bounceIn 1s ease;margin-top:20px}
+.subscript {font-size:.7em;vertical-align:super;margin-left:-.3em}
+@media (max-width:480px) {body {flex-direction:column-reverse}h1 {margin-bottom:10px}select,textarea {width:100%}button {width:100%}}

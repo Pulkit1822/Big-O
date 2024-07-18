@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Big O Notation Calculator</title>
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+        <h1>Big O Notation calculator</h1>
+        <div>
+            <select id="languageOption">
+                <option value="" disabled selected>Select Language</option>
+                <option>Java</option>
+                <option>C</option>
+                <option>C++</option>
+                <option>Python</option>
+                <option>C#</option>
+                <option>Javascript</option>
+                <option>Swift</option>
+            </select>
+        </div>
+        <div>
+            <label for="codeInput">Enter code:</label>
+        </div>
+        <div>
+            <textarea spellcheck="false" id="codeInput" rows=10 cols="80"
+                placeholder="write a for loop..."></textarea>
+        </div>
+
+        <div>
+            <button id="getBigOBtn">Submit</button>
+        </div>
+
+        <div>
+            <h2>Time Complexity is: <span id="resultShow"></span></h2>
+        </div>
+
+        <script src="logic.js"></script>
+        <script src="index.js"></script>
+    </body>
+</html>
