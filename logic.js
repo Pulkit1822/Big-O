@@ -1,8 +1,9 @@
-const comparisonOperators = [">", "<", ">=", "<=", "==", "!="];
-const operations = ["+=", "-=", "/=", "*=", "++", "--", "="];
-const arithOperations = ["+", "-", "/", "*"];
+const comparisonOperators = [">", "<", ">=", "<=", "==", "!="]
+const operations = ["+=", "-=", "/=", "*=", "++", "--", "="]
+const arithOperations = ["+", "-", "/", "*"]
 
 function getBiggestBigOString(bigOStrings) {
+
     var numberNsList = [];
     var maxNs = 0;
     for(var i = 0; i < bigOStrings.length; i++) {
@@ -14,20 +15,26 @@ function getBiggestBigOString(bigOStrings) {
                 numberNs++;
             }
         }
+
         if(numberNs > maxNs) {
             maxNs = numberNs;
         }
+
         numberNsList.push(numberNs);
     }
+
+
     topBigNStrings = [];
     for(var i = 0; i < numberNsList.length; i++) {
         if(numberNsList[i] == maxNs) {
             topBigNStrings.push(bigOStrings[i]);
         }
     }
+
     if(topBigNStrings.length == 1) {
         return topBigNStrings[0];
     }
+
     var maxLsIndex = 0;
     var maxLsCount = 0;
     for(var i = 0; i < topBigNStrings.length; i++) {
@@ -39,17 +46,23 @@ function getBiggestBigOString(bigOStrings) {
                 LsCount++;
             }
         }
+
         if(LsCount > maxLsCount) {
             maxLsCount = LsCount;
             maxLsIndex = i;
         }
     }
+
     return topBigNStrings[maxLsIndex];
+
 }
 
 function translateBigOStringToBigO(bigOString) {
     var nCount = 0;
     var lCount = 0;
+
+    console.log("BigOString " + bigOString);
+
     for(var i = 0; i < bigOString.length; i++) {
         var c = bigOString[i];
         if (c == 'N') {
@@ -59,6 +72,7 @@ function translateBigOStringToBigO(bigOString) {
             lCount++;
         }
     }
+
     res = "";
     if(nCount > 0) {
         if(nCount > 1) {
@@ -68,6 +82,7 @@ function translateBigOStringToBigO(bigOString) {
             res += "N";
         }
     }
+
     if(lCount > 0) {
         if(lCount > 1) {
             res += "log&nbsp;<sup class='subscript'>" + lCount + "</sup>(N)";
@@ -76,9 +91,11 @@ function translateBigOStringToBigO(bigOString) {
             res += "log(N)";
         }
     }
+
     if(nCount == 0 && lCount == 0) {
         res += "1";
     }
+
     return "O(" + res + ")";
 }
 
@@ -94,12 +111,16 @@ function getForStatements(linesOfCode) {
                 "level": level
             }
             forStatements.push(lineObj);
+
             level += 1;
         }
+
         if(isClosingStatement > -1) {
+
             level -= 1;
         }
     });
+
     return forStatements;
 }
 
@@ -107,9 +128,12 @@ function checkAlphaNumeric(lexicon) {
     const alphaRegex = "^[a-zA-Z]*$"
     const numericRegex = "^[0-9]*$"
     const alphaNumericRegex = "^[a-zA-Z0-9]*$"
+
     lexicon = lexicon.trim();
+
     let mN = lexicon.match(numericRegex)
     let mAN = lexicon.match(alphaNumericRegex)
+
     var res;
     if(mN) {
         res = "num";
@@ -125,16 +149,19 @@ function checkAlphaNumeric(lexicon) {
     else {
         res = "err";
     }
-    return res;
-}
 
+    return res;
+
+}
 function evaluateForStatement(forLine) {
     let forLineSplit = forLine['line'].split("(");
     let level = forLine['level'];
     let forLineLogic = forLineSplit[1].split(";");
+
     let varInstantiation = forLineLogic[0];
     let range = forLineLogic[1];
     let operation = forLineLogic[2].split(")")[0];
+
     var initValue = varInstantiation.split("=");
     initValue = initValue[initValue.length - 1];
     var rangeStop;
@@ -152,11 +179,13 @@ function evaluateForStatement(forLine) {
         if(operation.indexOf(op) > -1) {
             if(op === "=") {
                 operationDone = "lazy"
+                
             }
             else {
                 if(op === "++" || op === "--") {
                     let lex = operation.split(op)[0];
                     let typeCheck = checkAlphaNumeric(lex)
+  
                     if(typeCheck === "var") {
                         operationDone = "lin";
                     }
@@ -168,8 +197,10 @@ function evaluateForStatement(forLine) {
                     let operationSplit = operation.split(op);
                     let leftLex = operationSplit[0];
                     let rightLex = operationSplit[1];
+                    
                     let leftTypeCheck = checkAlphaNumeric(leftLex);
                     let rightTypeCheck = checkAlphaNumeric(rightLex);
+
                     if(leftTypeCheck === "var") {
                         if(rightTypeCheck === "num") {
                             rightLex = rightLex.trim();
@@ -189,12 +220,15 @@ function evaluateForStatement(forLine) {
                         operationDone = "err";
                     }
                 }
+
                 if(op === "*=" || op === "/=") {
                     let operationSplit = operation.split(op);
                     let leftLex = operationSplit[0];
                     let rightLex = operationSplit[1];
+                    
                     let leftTypeCheck = checkAlphaNumeric(leftLex);
                     let rightTypeCheck = checkAlphaNumeric(rightLex);
+
                     if(leftTypeCheck === "var") {
                         if(rightTypeCheck === "num") {
                             rightLex = rightLex.trim();
@@ -219,10 +253,12 @@ function evaluateForStatement(forLine) {
         }
         operationDone = "err";
     }
+
     return {
         "eval": operationDone,
         "level": level
     }
+
 }
 
 function getBigONotation(forStatements) {
@@ -231,6 +267,7 @@ function getBigONotation(forStatements) {
         let r = evaluateForStatement(forLine);
         val_results.push(r);
     })
+
     var bigORes;
     var bigOString = "";
     var bigOList = [];
@@ -240,44 +277,58 @@ function getBigONotation(forStatements) {
         let val_result = val_results[i];
         let eval = val_result['eval'];
         let level = val_result['level'];
+
         if(i != 0 && level == 1) {
             bigOList.push(bigOString);
             bigOString = "";
         }
+
         if(eval === "err") {
             hasError = true;
             break;
         }
+
         if(eval == "lazy") {
             isLazy = true;
             break;
         }
+
         else if(eval === "lin") {
             bigOString += "N";
         }
+
         else if(eval == 'log') {
             bigOString += "L"
         }
+        
         else if(eval == "const") {
             bigOString += "O"
         }
+
         else {
             hasError = true;
         }
+
     }
+
+    bigOList.push(bigOString);
+
     if(hasError) {
-        bigOList.push(bigOString);
-        bigORes = getBiggestBigOString(bigOList);
-        return translateBigOStringToBigO(bigORes);
+        return "An error has occurred. Make sure the syntax of your " +
+            "code is correct or that it's logic doesn't create an infinite loop.";    
     }
+
     if(isLazy) {
-        bigOList.push(bigOString);
-        bigORes = getBiggestBigOString(bigOList);
-        return translateBigOStringToBigO(bigORes);
+        return "Congrats, you found a use case that I was really too lazy to implement. " +
+        "It's not that it's IMPOSSIBLE to do, but there are so many insane edge cases to this " +
+        "that I decided it wasn't worth the hassle. Please, for the love of God, use a simpler for or while loop."
     }
+
     bigORes = getBiggestBigOString(bigOList);
     var finalResult = translateBigOStringToBigO(bigORes);
+
     return finalResult;
+
 }
 function calculateBigO() {
     document.getElementById('resultShow').innerText = '';
