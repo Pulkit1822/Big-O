@@ -44,13 +44,11 @@ function getBiggestBigOString(bigOStrings) {
                 LsCount++;
             }
         }
-
         if(LsCount > maxLsCount) {
             maxLsCount = LsCount;
             maxLsIndex = i;
         }
     }
-
     return topBigNStrings[maxLsIndex];
 }
 function translateBigOStringToBigO(bigOString) {
