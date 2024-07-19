@@ -52,7 +52,6 @@ function getBiggestBigOString(bigOStrings) {
     }
 
     return topBigNStrings[maxLsIndex];
-
 }
 
 function translateBigOStringToBigO(bigOString) {
