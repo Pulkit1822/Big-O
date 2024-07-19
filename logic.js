@@ -22,8 +22,6 @@ function getBiggestBigOString(bigOStrings) {
 
         numberNsList.push(numberNs);
     }
-
-
     topBigNStrings = [];
     for(var i = 0; i < numberNsList.length; i++) {
         if(numberNsList[i] == maxNs) {
