@@ -1,4 +1,4 @@
- # Big-O Analyzer
+![Big-O Analyzer](https://github.com/Pulkit1822/Big-O/blob/main/content/bigo.png)
 
 The Big-O Analyzer is a web tool designed to evaluate the time complexity of code snippets. Users can select a programming language, input their code, and receive the Big-O notation output. This tool aids users in comprehending and optimizing their algorithms effectively.
 
@@ -23,7 +23,4 @@ To get started with using the Big-O Analyzer, simply visit the web tool at [runt
 
 ## Acknowledgements
 
-The Big-O Analyzer tool is maintained by Pulkit Kumar Mathur. Support this project through [GitHub Sponsors](buymeacoffee.com/pulkitkumarmathur).
-
----
-Remember to refer to the README.md file in the repository for further instructions and details. If you have any feedback or encounter issues using the Big-O Analyzer, please report them on the GitHub repository linked above.  
+The Big-O Analyzer tool is maintained by [Pulkit](https://github.com/Pulkit1822). Support this project through [GitHub Sponsors](https://github.com/sponsors/Pulkit1822) and [buymeacoffee](buymeacoffee.com/pulkitkumarmathur).
