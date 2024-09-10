@@ -1,5 +1,9 @@
-# [Big-O Analyzer](https://github.com/Pulkit1822/Big-O)
-![Big-O Analyzer](https://github.com/Pulkit1822/Big-O/blob/main/content/bigo.png)
+<p align="center">
+  <a href="https://github.com/Pulkit1822/Big-O">
+    <img src="https://github.com/Pulkit1822/Big-O/blob/main/content/bigo.png" height="128">
+  </a>
+  <h1 align="center">Big-O Analyzer</h1>
+</p>
 
 The Big-O Analyzer is a web tool designed to evaluate the time complexity of code snippets. Users can select a programming language, input their code, and receive the Big-O notation output. This tool aids users in comprehending and optimizing their algorithms effectively.
 
